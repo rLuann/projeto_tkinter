@@ -66,6 +66,7 @@ def incompleta(figura):
         x1, y1, x2, y2 = values
         return x1 == x2 or y1 == y2
     elif fig == "oval":
+        x1, y1, x2, y2 = values
         return x1 == x2 or y1 == y2
     else : # fig == "rabisco"
         return len(values) <= 1
