@@ -86,9 +86,8 @@ figuras = []
 figura_nova = None
 
 root = Tk()
-root.title("Editor de Desenho - Parte 1: Cor da Borda")
-
 frame = Frame(root)
+# Widgets arranjados com Layout grid dentro de frame
 paddings = {'padx': 5, 'pady': 5}
 
 # Frame para tipo de figura
