@@ -1,4 +1,5 @@
 from figuras import *
+
 class Rabisco(Figura):
     def __init__(self, x, y, cor_borda = "black", **kwargs):
         super().__init__(cor_borda = cor_borda, cor_preenchimento = None)

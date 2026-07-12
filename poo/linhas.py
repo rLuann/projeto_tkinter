@@ -2,7 +2,7 @@ from figuras import *
 
 # criando subclasse linha
 class Linha(Figura):
-    # aqui utilizamos os kwargs (keyword arguments) para que ela guardasse a cor_preenchimento, já que a linha não tem. Porque a função do main passa cor_preenchimento para todas as subclasses.
+    # aqui utilizamos os kwargs (keyword arguments) para que ela guardasse a cor_preenchimento, já que a linha não tem. Porque a função do main passa cor_preenchimento para todas as subclasses. Iraemos adicionar os kwargs em outras classes.
     def __init__(self, x1, y1, cor_borda = "black", **kwargs):
         super().__init__(cor_borda = cor_borda, cor_preenchimento = None)
         self.x1 = x1
