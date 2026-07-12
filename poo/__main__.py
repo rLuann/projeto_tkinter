@@ -4,13 +4,18 @@ from figuras import *
 from linhas import Linha  
 from rabisco import Rabisco
 from retangulo import Retangulo
+from circulo import *
+from poligono import *
+from oval import *
 
 # dicionário para referenciar as classes
 MAPA_FIGURAS = {
     'Linha': Linha,
     'Rabisco': Rabisco,
     'Retângulo': Retangulo,
-    
+    'Círculo': Circulo,
+    'Polígono': Poligono,
+    'Oval': Oval
 }
 
 def iniciar_figura_nova(event): 
@@ -18,8 +23,23 @@ def iniciar_figura_nova(event):
     
     cor_borda = cor_borda_var.get()
     cor_preenchimento = cor_preenchimento_var.get()
-    
     tipo = tipo_figura_var.get()
+
+    if tipo == 'Polígono':
+        # Se já existe um polígono sendo desenhado, adiciona vértice
+        if isinstance(figura_nova, Poligono):
+            figura_nova.adicionar_vertice(event.x, event.y)
+            desenhar_figuras()
+            desenhar_figura_nova()
+            return
+        # Senão, cria um novo polígono
+        else:
+            figura_nova = Poligono(
+                event.x, event.y,
+                cor_borda=cor_borda,
+                cor_preenchimento=cor_preenchimento
+            )
+            return
     
     # aqui tá usando o dicionário mapa_figuras para criar a classe certa
     classe_figura = MAPA_FIGURAS[tipo]
@@ -41,6 +61,24 @@ def incluir_figura_nova(event):
     if not figura_nova.esta_incompleta():
         figuras.append(figura_nova)
     desenhar_figuras()
+
+# função para finalizar o polígono, tem que ter mais de 3 vérticies para ser finalizado (finaliza com 2 cliques)
+def finalizar_poligono(event=None):
+    global figura_nova
+    
+    if isinstance(figura_nova, Poligono):
+        figura_nova.adicionar_vertice(event.x, event.y)
+        if not figura_nova.esta_incompleta():
+            figuras.append(figura_nova)
+            figura_nova = None
+            desenhar_figuras()
+
+# adiciona vértice com um click ao polígono
+def adicionar_vertice_poligono(event):
+    global figura_nova
+    
+    if isinstance(figura_nova, Poligono):
+        figura_nova.adicionar_vertice(event.x, event.y)
 
 # aqui usamos polimorfismo para fazer uma chamada de método para cada subclasse
 def desenhar_figuras():
@@ -78,7 +116,7 @@ tipo_figura_var = StringVar(root)
 # Adicionado 'Polígono' nas opções
 option_menu = ttk.OptionMenu(
     frame_tipo, tipo_figura_var,
-    'Linha', 'Linha', 'Rabisco', 'Círculo', 'Retângulo', 'Polígono'
+    'Linha', 'Linha', 'Rabisco', 'Círculo', 'Retângulo', 'Polígono', 'Oval'
 )
 option_menu.grid(column=1, row=0, sticky=W, **paddings)
 
@@ -128,5 +166,10 @@ canvas.bind('<ButtonPress-1>', iniciar_figura_nova)
 canvas.bind('<B1-Motion>', atualizar_figura_nova)
 canvas.bind('<ButtonRelease-1>', incluir_figura_nova)
 root.bind('<Control-z>', desfazer_ultima_figura)
+
+# polígono
+canvas.bind('<Double-Button-1>', finalizar_poligono)
+root.bind('<Control-z>', desfazer_ultima_figura)
+root.bind('<Return>', finalizar_poligono)  # enter para finalizar também, além de clique
 
 root.mainloop()
