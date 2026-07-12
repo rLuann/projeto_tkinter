@@ -19,11 +19,3 @@ class Figura(ABC):
     def esta_incompleta(self):
         pass
 
-
-
-
-
-
-
-    
-
