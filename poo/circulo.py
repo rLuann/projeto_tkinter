@@ -29,3 +29,4 @@ class Circulo(Figura):
 
     def esta_incompleta(self):
         return self.raio == 0
+ 

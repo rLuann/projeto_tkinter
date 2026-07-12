@@ -91,8 +91,31 @@ cor_borda_var = StringVar(root, value="black")
 ttk.Label(frame_cores, text="Cor da Borda:").grid(column=0, row=0, padx=5)
 borda_combo = ttk.Combobox(
     frame_cores, textvariable=cor_borda_var,
-    values=["black", "red", "blue", "green", "orange",
-            "purple", "brown", "pink", "gray", "cyan"],
+    values=["", "red", "blue", "green", "yellow",
+"orange", "purple", "pink", "lightblue",
+"lightgreen", "lightgray", "cyan", "brown",
+"black", "magenta", "navy", "teal",
+"white", "gray", "darkgray", "darkgreen",
+"darkblue", "darkred", "darkorange", "gold",
+"goldenrod", "khaki", "beige", "ivory",
+"lavender", "violet", "plum", "orchid",
+"indigo", "turquoise", "aquamarine", "coral",
+"salmon", "tomato", "crimson", "maroon",
+"olive", "lime", "limegreen", "forestgreen",
+"seagreen", "springgreen", "mintcream",
+"skyblue", "deepskyblue", "dodgerblue",
+"steelblue", "royalblue", "slateblue",
+"mediumblue", "midnightblue", "aliceblue",
+"powderblue", "cadetblue", "darkcyan",
+"darkturquoise", "paleturquoise",
+"hotpink", "deeppink", "lightpink",
+"palevioletred", "mediumvioletred",
+"thistle", "snow", "honeydew",
+"azure", "wheat", "tan", "chocolate",
+"sienna", "peru", "burlywood",
+"sandybrown", "rosybrown", "firebrick",
+"gainsboro", "silver", "dimgray",
+"slategray", "darkslategray"],
     state="readonly", width=15
 )
 borda_combo.grid(column=1, row=0, padx=5)
@@ -103,8 +126,30 @@ ttk.Label(frame_cores, text="Cor de Preenchimento:").grid(column=2, row=0, padx=
 preenchimento_combo = ttk.Combobox(
     frame_cores, textvariable=cor_preenchimento_var,
     values=["", "red", "blue", "green", "yellow",
-            "orange", "purple", "pink", "lightblue",
-            "lightgreen", "lightgray", "cyan"],
+"orange", "purple", "pink", "lightblue",
+"lightgreen", "lightgray", "cyan", "brown",
+"black", "magenta", "navy", "teal",
+"white", "gray", "darkgray", "darkgreen",
+"darkblue", "darkred", "darkorange", "gold",
+"goldenrod", "khaki", "beige", "ivory",
+"lavender", "violet", "plum", "orchid",
+"indigo", "turquoise", "aquamarine", "coral",
+"salmon", "tomato", "crimson", "maroon",
+"olive", "lime", "limegreen", "forestgreen",
+"seagreen", "springgreen", "mintcream",
+"skyblue", "deepskyblue", "dodgerblue",
+"steelblue", "royalblue", "slateblue",
+"mediumblue", "midnightblue", "aliceblue",
+"powderblue", "cadetblue", "darkcyan",
+"darkturquoise", "paleturquoise",
+"hotpink", "deeppink", "lightpink",
+"palevioletred", "mediumvioletred",
+"thistle", "snow", "honeydew",
+"azure", "wheat", "tan", "chocolate",
+"sienna", "peru", "burlywood",
+"sandybrown", "rosybrown", "firebrick",
+"gainsboro", "silver", "dimgray",
+"slategray", "darkslategray"],
     state="readonly", width=15
 )
 preenchimento_combo.grid(column=3, row=0, padx=5)
@@ -130,3 +175,4 @@ canvas.bind('<ButtonRelease-1>', incluir_figura_nova)
 root.bind('<Control-z>', desfazer_ultima_figura)
 
 root.mainloop()
+
