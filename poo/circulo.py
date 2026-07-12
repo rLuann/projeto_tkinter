@@ -4,7 +4,7 @@ import math
 #criando a classe circulo
 class Circulo(Figura):
 
-    def _init_(self, x1, y1, cor_borda="black", cor_preenchimento="", **kwargs):
+    def __init__(self, x1, y1, cor_borda="black", cor_preenchimento="", **kwargs):
         super().__init__(cor_borda = cor_borda, cor_preenchimento = cor_preenchimento)
         self.centro_x = x1
         self.centro_y = y1

@@ -1,11 +1,9 @@
 from figuras import *
 
-
-
 class Poligono(Figura):
     
-    def _init_(self, x, y, cor_borda="black", cor_preenchimento="", **kwargs):
-        super()._init_(cor_borda=cor_borda, cor_preenchimento=cor_preenchimento)
+    def __init__(self, x, y, cor_borda="black", cor_preenchimento="", **kwargs):
+        super().__init__(cor_borda=cor_borda, cor_preenchimento=cor_preenchimento)
         self.vertices = [(x, y)]  # Lista de vértices
     
     def atualizar(self, event):
