@@ -1,4 +1,4 @@
-__main__.py:
+
 from tkinter import Tk
 from modelo.desenho import Desenho
 from view.interface import InterfaceDesenho
