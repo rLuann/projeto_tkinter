@@ -33,7 +33,7 @@ class InterfaceDesenho:
     
     TIPOS_FIGURA = ['Linha', 'Rabisco', 'Retângulo', 'Círculo', 'Oval', 'Polígono']
     
-    def _init_(self, root):
+    def __init__(self, root):
         self.root = root
         self.root.title("Editor de Desenho OO - UFS")
         
@@ -74,13 +74,6 @@ class InterfaceDesenho:
             *self.TIPOS_FIGURA
         )
         self.option_menu.grid(column=1, row=0, sticky=W, **paddings)
-        
-    
-        self.botao_desfazer = ttk.Button(
-            frame_tipo, 
-            text="Desfazer (Ctrl+Z)"
-        )
-        self.botao_desfazer.grid(column=2, row=0, sticky=W, **paddings)
     
     def _criar_frame_cores(self, paddings):
         frame_cores = Frame(self.frame)
@@ -141,7 +134,6 @@ class InterfaceDesenho:
     def get_cor_preenchimento(self):
         return self.cor_preenchimento_var.get()
     
-    # Métodos de manipulação do canvas
     def limpar_canvas(self):
         self.canvas.delete("all")
     

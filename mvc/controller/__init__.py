@@ -1,1 +1,1 @@
-from controller import ControladorDesenho
+from mvc.controller.controlador import ControladorDesenho

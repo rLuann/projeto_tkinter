@@ -1,4 +1,4 @@
-from figuras import *
+from mvc.modelo.figuras import *
 
 # criando subclasse linha
 class Linha(Figura):

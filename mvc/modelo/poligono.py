@@ -1,4 +1,4 @@
-from figuras import *
+from mvc.modelo.figuras import *
 
 class Poligono(Figura):
     
