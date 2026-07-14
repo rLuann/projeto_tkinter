@@ -141,7 +141,6 @@ class InterfaceDesenho:
     def get_cor_preenchimento(self):
         return self.cor_preenchimento_var.get()
     
-    # Métodos de manipulação do canvas
     def limpar_canvas(self):
         self.canvas.delete("all")
     
