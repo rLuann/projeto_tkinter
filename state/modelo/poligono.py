@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 from state.modelo.figuras import *
-=======
-from mvc.modelo.figuras import Figura
->>>>>>> e71811bc6e3566d7f1fe3aa95e7eb41917c7498c
 
 class Poligono(Figura):
 

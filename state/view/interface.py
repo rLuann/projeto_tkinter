@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import filedialog
+from tkinter import messagebox
 
 class InterfaceDesenho:
 
@@ -76,16 +78,15 @@ class InterfaceDesenho:
         self.option_menu.grid(column=1, row=0, sticky=W, **paddings)
          
         self.botao_abrir = ttk.Button(
-        frame_tipo, 
-        text="Abrir"
-           )
+            frame_tipo, 
+            text="Abrir"
+        )
         self.botao_abrir.grid(column=3, row=0, sticky=W, **paddings)
 
-
         self.botao_salvar = ttk.Button(
-        frame_tipo, 
-        text="Salvar"
-)
+            frame_tipo, 
+            text="Salvar"
+        )
         self.botao_salvar.grid(column=4, row=0, sticky=W, **paddings)
 
     def _criar_frame_cores(self, paddings):
@@ -155,4 +156,35 @@ class InterfaceDesenho:
     
     def atualizar_instrucoes(self, texto):
         self.label_instrucoes.config(text=texto)
+
+    def pedir_arquivo_para_salvar(self):
+        caminho = filedialog.asksaveasfilename(
+            title="Salvar Desenho",
+            defaultextension=".json",
+            filetypes=[
+                ("Arquivos JSON", "*.json"),
+                ("Todos os arquivos", ".")
+            ]
+        )
+        return caminho if caminho else None
+
+    def pedir_arquivo_para_abrir(self):
+        caminho = filedialog.askopenfilename(
+            title="Abrir Desenho",
+            filetypes=[
+                ("Arquivos JSON", "*.json"),
+                ("Todos os arquivos", ".")
+            ]
+        )
+        return caminho if caminho else None
+
+    def mostrar_mensagem(self, titulo, mensagem):
+        messagebox.showinfo(titulo, mensagem)
+
+    def mostrar_erro(self, titulo, mensagem):
+        messagebox.showerror(titulo, mensagem)
+
+    def pedir_confirmacao(self, titulo, mensagem):
+        return messagebox.askyesno(titulo, mensagem)
+    
         

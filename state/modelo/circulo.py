@@ -1,4 +1,4 @@
-from state.modelo.figuras import Figura
+from state.modelo.figuras import *
 import math
 
 class Circulo(Figura):
@@ -13,7 +13,7 @@ class Circulo(Figura):
     def atualizar(self, event):
         dx = event.x - self.centro_x
         dy = event.y - self.centro_y
-        self.raio = math.sqrt(dx*2 + dy*2)
+        self.raio = math.sqrt(dx**2 + dy**2)
 
     def desenhar(self, canvas, dash=None):
         x1 = self.centro_x - self.raio
@@ -30,7 +30,7 @@ class Circulo(Figura):
     def esta_incompleta(self):
         return self.raio == 0
     
-    def to_dict(self):
+    def salvar(self):
       
         return {
             'tipo': 'Círculo',
@@ -42,7 +42,7 @@ class Circulo(Figura):
         }
     
     @staticmethod
-    def from_dict(dados):
+    def abrir(dados):
       
         circulo = Circulo(
             dados['centro_x'], dados['centro_y'],

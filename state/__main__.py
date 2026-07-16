@@ -5,9 +5,9 @@ from tkinter import Tk
 if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from mvc.modelo.desenho import Desenho
-from mvc.view.interface import InterfaceDesenho
-from mvc.controller.controlador import ControladorDesenho
+from state.modelo.desenho import Desenho
+from state.view.interface import InterfaceDesenho
+from state.controller.controlador import ControladorDesenho
 
 def main():
 

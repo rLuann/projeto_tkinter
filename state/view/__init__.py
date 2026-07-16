@@ -1,1 +1,1 @@
-from mvc.view.interface import InterfaceDesenho
+from state.view.interface import InterfaceDesenho

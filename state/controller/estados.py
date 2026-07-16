@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from modelo.poligono import Poligono
+from state.modelo.poligono import Poligono
 
 # superclasse para todos os estados do controlador
 class EstadoDesenho(ABC):

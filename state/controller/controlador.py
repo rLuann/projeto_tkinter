@@ -1,10 +1,10 @@
-from modelo.linhas import Linha
-from modelo.rabisco import Rabisco
-from modelo.retangulo import Retangulo
-from modelo.circulo import Circulo
-from modelo.oval import Oval
-from modelo.poligono import Poligono
-from controller.estados import EstadoOcioso
+from state.modelo.linhas import Linha
+from state.modelo.rabisco import Rabisco
+from state.modelo.retangulo import Retangulo
+from state.modelo.circulo import Circulo
+from state.modelo.oval import Oval
+from state.modelo.poligono import Poligono
+from state.controller.estados import EstadoOcioso, EstadoDesenhandoFiguraSimples, EstadoCriandoPoligono
 
 
 class ControladorDesenho:
@@ -35,7 +35,58 @@ class ControladorDesenho:
         canvas.bind('<Double-Button-1>', self._on_double_click)
         self.interface.root.bind('<Control-z>', self._desfazer)
         self.interface.root.bind('<Return>', self._on_enter)
-        self.interface.botao_desfazer.config(command=self._desfazer)
+        # Botões de arquivo
+        self.interface.botao_salvar.config(command=self._salvar)
+        self.interface.botao_abrir.config(command=self._abrir)
+
+        # Atalhos de teclado
+        self.interface.root.bind('<Control-s>', self._salvar)  # Ctrl+S para salvar
+        self.interface.root.bind('<Control-o>', self._abrir)   # Ctrl+O para abrir
+
+
+    # Adicione estes métodos no final da classe:
+
+    def _salvar(self, event=None):
+        """Salva o desenho em arquivo."""
+        # Se já tem arquivo, salva direto. Senão, pede caminho.
+        if self.desenho.tem_arquivo_salvo():
+            caminho = self.desenho.get_arquivo_atual()
+        else:
+            caminho = self.interface.pedir_arquivo_para_salvar()
+        
+        if caminho:
+            if self.desenho.salvar_em_arquivo(caminho):
+                self.interface.mostrar_mensagem(
+                    "Sucesso", 
+                    f"Desenho salvo em:\n{caminho}"
+                )
+
+    def _abrir(self, event=None):
+        """Abre um desenho de arquivo."""
+        # Verifica se há alterações não salvas
+        if self.desenho.figuras:
+            confirmar = self.interface.pedir_confirmacao(
+                "Abrir Desenho",
+                "Há um desenho atual. Deseja abrir um novo arquivo?\n"
+                "(As alterações não salvas serão perdidas)"
+            )
+            if not confirmar:
+                return
+        
+        caminho = self.interface.pedir_arquivo_para_abrir()
+        
+        if caminho:
+            if self.desenho.carregar_de_arquivo(caminho):
+                # Volta para estado ocioso
+                self.mudar_estado(EstadoOcioso(self))
+                
+                # Atualiza a tela
+                self._atualizar_tela()
+                
+                self.interface.mostrar_mensagem(
+                    "Sucesso",
+                    f"Desenho carregado de:\n{caminho}"
+                )
     
 
     def _on_mouse_press(self, event):

@@ -1,10 +1,10 @@
 import json
-from modelo.linhas import Linha
-from modelo.rabisco import Rabisco
-from modelo.retangulo import Retangulo
-from modelo.circulo import Circulo
-from modelo.oval import Oval
-from modelo.poligono import Poligono
+from state.modelo.linhas import Linha
+from state.modelo.rabisco import Rabisco
+from state.modelo.retangulo import Retangulo
+from state.modelo.circulo import Circulo
+from state.modelo.oval import Oval
+from state.modelo.poligono import Poligono
 
 
 class Desenho:
@@ -20,7 +20,7 @@ class Desenho:
         'Polígono': Poligono
     }
     
-    def _init_(self):
+    def __init__(self):
         self.figuras = []
         self.figura_atual = None
         self.arquivo_atual = None  
@@ -47,6 +47,12 @@ class Desenho:
             return True
         return False
     
+    def tem_arquivo_salvo(self):
+        return self.arquivo_atual is not None
+    
+    def get_arquivo_atual(self):
+        return self.arquivo_atual
+    
     def get_todas_figuras_para_desenhar(self):
         figuras_desenho = []
         for figura in self.figuras:
@@ -69,7 +75,7 @@ class Desenho:
             
             dados = []
             for figura in self.figuras:
-                dados.append(figura.to_dict())
+                dados.append(figura.salvar())
             
             # Salva como JSON
             with open(caminho_arquivo, 'w', encoding='utf-8') as arquivo:
@@ -98,8 +104,8 @@ class Desenho:
                 tipo = item.get('tipo')
                 classe = self.MAPA_RECRIACAO.get(tipo)
                 
-                if classe and hasattr(classe, 'from_dict'):
-                    figura = classe.from_dict(item)
+                if classe and hasattr(classe, 'abrir'):
+                    figura = classe.abrir(item)
                     if figura:
                         self.figuras.append(figura)
             
@@ -112,11 +118,3 @@ class Desenho:
         except Exception as e:
             print(f"Erro ao carregar: {e}")
             return False
-    
-    def tem_arquivo_salvo(self):
-       
-        return self.arquivo_atual is not None
-    
-    def get_arquivo_atual(self):
-     
-        return self.arquivo_atual
