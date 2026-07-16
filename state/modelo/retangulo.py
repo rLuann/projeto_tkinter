@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 from state.modelo.figuras import *
+=======
+from mvc.modelo.figuras import Figura
+>>>>>>> e71811bc6e3566d7f1fe3aa95e7eb41917c7498c
 
-# criando subclasse retangulo
-class Retangulo(Figura):    
-    def __init__(self, x1, y1, cor_borda = "black", cor_preenchimento = "", **kwargs):
+class Retangulo(Figura):
+
+    
+    def __init__(self, x1, y1, cor_borda="black", cor_preenchimento="", **kwargs):
         super().__init__(cor_borda=cor_borda, cor_preenchimento=cor_preenchimento)
         self.x1 = x1
         self.y1 = y1
@@ -14,7 +19,36 @@ class Retangulo(Figura):
         self.y2 = event.y
     
     def desenhar(self, canvas, dash=None):
-        canvas.create_rectangle(self.x1, self.y1, self.x2, self.y2, outline=self.cor_borda, fill = self.cor_preenchimento, dash = dash)
+        canvas.create_rectangle(
+            self.x1, self.y1, self.x2, self.y2, 
+            outline=self.cor_borda, 
+            fill=self.cor_preenchimento, 
+            dash=dash
+        )
     
     def esta_incompleta(self):
         return self.x1 == self.x2 or self.y1 == self.y2
+    
+    def salvar(self):
+       
+        return {
+            'tipo': 'Retângulo',
+            'x1': self.x1,
+            'y1': self.y1,
+            'x2': self.x2,
+            'y2': self.y2,
+            'cor_borda': self.cor_borda,
+            'cor_preenchimento': self.cor_preenchimento
+        }
+    
+    @staticmethod
+    def abrir(dados):
+       
+        retangulo = Retangulo(
+            dados['x1'], dados['y1'],
+            cor_borda=dados['cor_borda'],
+            cor_preenchimento=dados['cor_preenchimento']
+        )
+        retangulo.x2 = dados['x2']
+        retangulo.y2 = dados['y2']
+        return retangulo

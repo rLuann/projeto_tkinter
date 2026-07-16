@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 from modelo.poligono import Poligono
 
-
 # superclasse para todos os estados do controlador
 class EstadoDesenho(ABC):
     def __init__(self, controlador):
