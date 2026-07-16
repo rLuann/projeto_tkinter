@@ -74,7 +74,20 @@ class InterfaceDesenho:
             *self.TIPOS_FIGURA
         )
         self.option_menu.grid(column=1, row=0, sticky=W, **paddings)
-    
+         
+        self.botao_abrir = ttk.Button(
+        frame_tipo, 
+        text="Abrir"
+           )
+        self.botao_abrir.grid(column=3, row=0, sticky=W, **paddings)
+
+
+        self.botao_salvar = ttk.Button(
+        frame_tipo, 
+        text="Salvar"
+)
+        self.botao_salvar.grid(column=4, row=0, sticky=W, **paddings)
+
     def _criar_frame_cores(self, paddings):
         frame_cores = Frame(self.frame)
         frame_cores.grid(column=0, row=1, sticky=W, **paddings)
@@ -142,3 +155,4 @@ class InterfaceDesenho:
     
     def atualizar_instrucoes(self, texto):
         self.label_instrucoes.config(text=texto)
+        
