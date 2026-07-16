@@ -1,4 +1,4 @@
-from mvc.modelo.figuras import *
+from state.modelo.figuras import *
 
 # criando subclasse retangulo
 class Retangulo(Figura):    

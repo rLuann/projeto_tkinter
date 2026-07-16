@@ -1,4 +1,4 @@
-from mvc.modelo.figuras import Figura
+from state.modelo.figuras import Figura
 import math
 
 #criando a classe circulo

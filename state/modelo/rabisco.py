@@ -1,4 +1,4 @@
-from mvc.modelo.figuras import *
+from state.modelo.figuras import *
 
 class Rabisco(Figura):
     def __init__(self, x, y, cor_borda = "black", **kwargs):
